@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "club-admin"
+    }
+  },
+  "defaultProject": "club-admin",
+  "cli": {
+    "analytics": "95a453bc-5d0e-4fb2-b57f-bf4937b023e3"
+  }
 }

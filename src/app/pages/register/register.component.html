@@ -1,0 +1,82 @@
+<div class="authentication">    
+    <div class="container d-flex justify-content-center h-100">
+        <div class="col-lg-6 col-sm-12">
+            <form class="card auth_form" name="myForm" [formGroup]="myForm">
+                <div class="header">
+                    <img class="logo" src="assets/images/logo.svg" alt="">
+                    <h5>Sign Up</h5>
+                    <span>Register a new membership</span>
+                </div>
+                <div class="body">
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label>Prénom<span style="color:red"> *</span></label>
+                            <input type="text" class="form-control" placeholder="Prénom" id="firstName"
+                                #firstName name="firstName" formControlName="firstName"
+                                [ngClass]="{'is-invalid':myForm.controls['firstName'].touched && myForm.controls['firstName'].invalid,
+                                'is-valid':myForm.controls['firstName'].touched && myForm.controls['firstName'].valid}">
+                            <div class="invalid-feedback">
+                                <div>Entrez votre prénom</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Nom <span style="color:red"> *</span></label>
+                            <input type="text" class="form-control" placeholder="Nom" id="lastName" #lastName
+                                 name="lastName" formControlName="lastName"
+                                [ngClass]="{'is-invalid':myForm.controls['lastName'].touched && myForm.controls['lastName'].invalid,
+                                'is-valid':myForm.controls['lastName'].touched && myForm.controls['lastName'].valid}">
+                            <div class="invalid-feedback">
+                                <div>Entrez votre nom</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        
+                        <div class="col-md-12 mb-3">
+                            <label>Email <span style="color:red"> *</span></label>
+                            <input type="email" class="form-control" placeholder="Email" #email
+                                required="" id="email" formControlName="email" [ngClass]="{'is-invalid':myForm.controls['email'].touched && myForm.controls['email'].invalid,
+                            'is-valid':myForm.controls['email'].touched && myForm.controls['email'].valid}">
+                        </div>
+                        
+                        <div class="col-md-12 mb-3">
+                            <label>User name <span style="color:red"> *</span></label>
+                            <input type="text" class="form-control" placeholder="Username"
+                                #username name="username" required="" id="username" formControlName="username" [ngClass]="{'is-invalid':myForm.controls['username'].touched && myForm.controls['username'].invalid,
+                            'is-valid':myForm.controls['username'].touched && myForm.controls['username'].valid}">
+                            <div class="invalid-feedback">
+                                <div>Entrez votre username</div>
+                            </div>
+                        </div>
+                       
+                        <div class="col-md-12 mb-3">
+                            <label>Password <span style="color:red"> *</span></label>
+                            <input type="password" class="form-control form-control-lg"
+                                id="exampleInputPassword1" placeholder="Password" #password required=""
+                                id="password" formControlName="password"
+                                [ngClass]="{'is-invalid':myForm.controls['password'].touched && myForm.controls['password'].invalid,
+                            'is-valid':myForm.controls['password'].touched && myForm.controls['password'].valid}">
+                            <div *ngIf="myForm.controls['password'].touched && myForm.controls['password'].invalid"
+                                class="invalid-feedback">
+                                <div *ngIf="myForm.controls['password'].errors?.required">Entrez
+                                    votre mot de passe</div>
+                                <div *ngIf="myForm.controls['password'].hasError('minlength')">Tappez le
+                                    mot de passe (6 caractères) </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+                        (click)="registerAdmin(firstName,lastName, email,username,password)">SIGN UP</a>
+                    <div class="signin_with mt-3">
+                        <a class="link" href="/login">You already have a membership?</a>
+                    </div>
+                </div>
+            </form>
+            <div class="copyright text-center">
+                &copy;
+                <script>document.write(new Date().getFullYear())</script>,
+                <span><a href="templatespoint.net">Templates Point</a></span>
+            </div>
+        </div>
+    </div>
+</div>
