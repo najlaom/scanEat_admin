@@ -27,11 +27,11 @@ const routes: Routes = [
         
       },
       {
-        path: 'add-user', component: AddUserComponent,
+        path: 'add-client', component: AddUserComponent,
        // canActivate: [AdminGuard]
       },
       {
-        path: 'users', component: ListUserComponent,
+        path: 'espace-clients', component: ListUserComponent,
        // canActivate: [AdminGuard]
       }
     ]

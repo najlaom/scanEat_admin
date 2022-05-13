@@ -15,6 +15,7 @@ export class AddUserComponent implements OnInit {
   myForm: FormGroup;
   fileToUpload: File = null;
   imageUrl: string = '';
+  idAdmin: any = "";
   constructor(private apiUserService: UsersService,
     private _router: Router,
     private fb: FormBuilder,
@@ -24,14 +25,15 @@ export class AddUserComponent implements OnInit {
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      username: new FormControl('', [Validators.required]),
+      logo: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-  
+
 
     })
   }
 
   ngOnInit(): void {
+    this.idAdmin = localStorage.getItem('_id');
   }
   //////////////////Image
   handleFileInput(file: FileList) {
@@ -43,72 +45,49 @@ export class AddUserComponent implements OnInit {
     reader.readAsDataURL(this.fileToUpload);
   }
 
-  registerUser(firstName, lastName, email, username, password, image) {
+  addClient(first_name, last_name, email, password, logo, num_tel, adresse) {
+    if (first_name.value != "" && last_name.value != "" && email.value != ""  && password.value != "" 
+    && logo.value != ""  && num_tel.value != "" && adresse.value != "" && this.imageUrl != "") {
 
-    this.apiUserService.addUser(firstName.value, lastName.value, email.value, username.value,
-      password.value, this.fileToUpload).subscribe(
-        (res) => {
-          firstName.value = null;
-          lastName.value = null;
-          email.value = null;
-          username.value = null;
-          password.value = null;
-          image.value = null;
-         
+      const formData: any = new FormData();
 
-        this._router.navigate(['/users']);
+      formData.append("LogoImage", this.fileToUpload, this.fileToUpload['name']);
 
+      var client = {
+        firstName: first_name.value,
+        lastName: last_name.value,
+        email: email.value,
+        password: password.value,
+        logo: logo.value,
+        num_tel: num_tel.value,
+        adresse: adresse.value,
+        manager: this.idAdmin
+      }
+      console.log(client)
+      for (var key in client) {
+        formData.append(key, client[key]);
+      }
 
-
-        }, (error) => {
-          if (error.status == 400) {
-            console.log({ error: error })
-
+      // if (true) {
+      if (confirm('Etes vous sûre?')) {
+        this.apiUserService.registerClient(formData).then((res: any) => {
+          // console.log("ressssss add cat : ")
+          // console.log(res)
+          if (res == true) {
+            this._router.navigate(['./espace-clients']);
+            // location.href = '/products';
+            console.log(res)
+          } else {
+            alert(res.msg);
           }
-          if (error.status == 500) {
-            console.log({ error })
-          }
-
         });
+      }
+    } else {
+      alert('Catégorie est invalide');
+    }
   }
 
-  addClient() {
 
-    console.log("this.product add prod")
-    console.log(this.user)
-    if (this.myForm.invalid) {
-      return;
-    }
-    const formData: any = new FormData();
-
-    formData.append("logoImage", this.fileToUpload, this.fileToUpload['name']);
-    for (var key in this.user) {
-      formData.append(key, this.user[key]);
-    }
-
-    this.apiUserService.addClient(formData).subscribe(
-      (data) => {
-        console.log("addClient : ");
-        console.log(data);
-        this.user = data
-        this.submitted = true;
-        
-
-       // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.myForm.value, null, 4));
-        //this._router.navigateByUrl('/users', { skipLocationChange: true })
-        console.log('dddddddddemail')
-
-        localStorage.setItem("lastName", this.user.data.lastName);
-        localStorage.getItem('lastName')
-        console.log(localStorage.getItem('lastName'))
-
-      },
-      error => {
-        console.log("error")
-        console.log(error)
-        alert(error.error)
-      });
-  }
 
 
 }

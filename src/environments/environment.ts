@@ -1,14 +1,15 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-const apiUrl = "http://localhost:3000/"
+const apiUrl = "https://scan-eat.wassali-express.tn/api/v0/"
 export const environment = {
   production: false,
   apiRegisterAdmin: apiUrl+"api/admin/signup",
   apiLoginAdmin: apiUrl+ "api/admin/signin",
   apiLogoutAdmin: apiUrl+"api/admin/signout",
-  apiRegisterUser: apiUrl+"api/admin/addUser",
-  apiListUsers: apiUrl+"api/admin/users",
+  apiListUsers: apiUrl+"api/espace_clients/users",
+  apiRegisterClient: apiUrl+"api/espace_clients/addClient",
+ 
   
 };
 

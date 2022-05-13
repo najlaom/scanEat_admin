@@ -12,31 +12,46 @@ export class UsersService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
  
-  addUser(name: any, lastName: any, email: any, username: any, password: any,
-    fileToUpload: File): Observable<any> {
+  // addUser(name: any, lastName: any, email: any, username: any, password: any,
+  //   fileToUpload: File): Observable<any> {
 
-    var formData: FormData = new FormData();
-    formData.append("firstName", name);
-    formData.append("lastName", lastName);
-    formData.append("email", email);
-    formData.append("username", username);
-    formData.append("password", password);
-    formData.append("LogoImage", fileToUpload, fileToUpload.name);
+  //   var formData: FormData = new FormData();
+  //   formData.append("firstName", name);
+  //   formData.append("lastName", lastName);
+  //   formData.append("email", email);
+  //   formData.append("username", username);
+  //   formData.append("password", password);
+  //   formData.append("LogoImage", fileToUpload, fileToUpload.name);
 
 
 
-    return this.http.post(environment.apiRegisterUser, formData,
-      {
-        reportProgress: true,
-        observe: 'events'
-      })
+  //   return this.http.post(environment.apiRegisterClient, formData,
+  //     {
+  //       reportProgress: true,
+  //       observe: 'events'
+  //     })
+  // }
+ 
+  registerClient(formData) {
+    return new Promise((slv) => {
+      this.http.post(environment.apiRegisterClient, formData).subscribe(
+        (res: any) => {
+          console.log('resssssssssssss');
+          console.log(JSON.stringify(res));
+          if (res) {
+            if (res.response) {
+              slv(res.response);
+            } else {
+              slv(res);
+            }
+          }
+        },
+        (error) => {
+          slv(false);
+        }
+      );
+    });
   }
-  addClient(user: any) {
-
-    return this.http.post(environment.apiRegisterUser,
-      user);
-  }
-
   
   getUsers() {
     let url = `${environment.apiListUsers}`;

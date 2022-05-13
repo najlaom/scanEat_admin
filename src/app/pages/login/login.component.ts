@@ -42,9 +42,10 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("firstName", this.admin.admin.firstName);
           localStorage.setItem("lastName", this.admin.admin.lastName);
           localStorage.setItem("role", this.admin.admin.role);
+          console.log( localStorage.setItem("role", this.admin.admin.role))
           localStorage.setItem("_id", this.admin.admin._id);
          
-          this._router.navigate(['./users']);
+          this._router.navigate(['./dashboard']);
            console.log(data)
         }
         

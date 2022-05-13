@@ -6,7 +6,7 @@
                     <div class="card project_list">
                         <div class="body">
                             <ul class="nav nav-tabs">
-                                <li class="nav-item"><a class="nav-link " data-toggle="tab" routerLink="/users"
+                                <li class="nav-item"><a class="nav-link " data-toggle="tab" routerLink="/espace-clients"
                                         routerLinkActive="active">Clients</a></li>
                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab">Ajouter
                                         Client</a></li>
@@ -42,25 +42,14 @@
                                                         <div>Entrez votre nom</div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12 mb-3">
+                                                <div class="col-md-6 mb-3">
                                                     <label>Email <span style="color:red"> *</span></label>
-                                                    <input type="email" class="form-control" placeholder="Email" #email name="email"
-                                                        required="" id="email" formControlName="email"
+                                                    <input type="email" class="form-control" placeholder="Email" #email
+                                                        name="email" required="" id="email" formControlName="email"
                                                         [ngClass]="{'is-invalid':myForm.controls['email'].touched && myForm.controls['email'].invalid,
                                                         'is-valid':myForm.controls['email'].touched && myForm.controls['email'].valid}">
                                                 </div>
-                                                <div class="col-md-12 mb-3">
-                                                    <label>User name <span style="color:red"> *</span></label>
-                                                    <input type="text" class="form-control" placeholder="Username"
-                                                        #username name="username" required="" id="username"
-                                                        formControlName="username"
-                                                        [ngClass]="{'is-invalid':myForm.controls['username'].touched && myForm.controls['username'].invalid,
-                                                    'is-valid':myForm.controls['username'].touched && myForm.controls['username'].valid}">
-                                                    <div class="invalid-feedback">
-                                                        <div>Entrez votre username</div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12 mb-3">
+                                                <div class="col-md-6 mb-3">
                                                     <label>Password <span style="color:red"> *</span></label>
                                                     <input type="password" class="form-control form-control-lg"
                                                         id="exampleInputPassword1" placeholder="Password" #password
@@ -76,18 +65,48 @@
                                                             mot de passe (6 caractères) </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label>Logo <span style="color:red"> *</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Logo" #logo name="logo"
+                                                        required="" id="logo" formControlName="logo"
+                                                        [ngClass]="{'is-invalid':myForm.controls['logo'].touched && myForm.controls['logo'].invalid,
+                                                    'is-valid':myForm.controls['logo'].touched && myForm.controls['logo'].valid}">
+                                                    <div class="invalid-feedback">
+                                                        <div>Entrez votre logo</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label>Numéro de Teléphone <span style="color:red"> *</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Numéro Telephone" #num_tel name="num_tel"
+                                                        required="" id="num_tel" formControlName="num_tel"
+                                                        [ngClass]="{'is-invalid':myForm.controls['num_tel'].touched && myForm.controls['num_tel'].invalid,
+                                                    'is-valid':myForm.controls['num_tel'].touched && myForm.controls['num_tel'].valid}">
+                                                    <div class="invalid-feedback">
+                                                        <div>Entrez votre logo</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label>Adresse <span style="color:red"> *</span></label>
+                                                    <input type="text" class="form-control" placeholder="Adresse"
+                                                        #adresse name="adresse" required="" id="adresse"
+                                                        formControlName="adresse"
+                                                        [ngClass]="{'is-invalid':myForm.controls['adresse'].touched && myForm.controls['adresse'].invalid,
+                                                    'is-valid':myForm.controls['adresse'].touched && myForm.controls['adresse'].valid}">
+                                                    <div class="invalid-feedback">
+                                                        <div>Entrez votre logo</div>
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-12 mb-3">
                                                     <label>File upload</label>
-                                                    <input type="file" name="img[]"
-                                                        class="file-upload-default  form-control-file" #image
-                                                        accept="image/*"
+                                                    <input type="file" class="file-upload-default form-control-file" name="file"
+                                                        id="file" #file accept="image/*"
                                                         (change)="handleFileInput($event.target.files)">
-                                                  
                                                 </div>
-
                                                 <div class="col-md-12 mb-3">
                                                     <button class="btn btn-primary float-right"
-                                                    (click)="registerUser(firstName,lastName, email,username,password, image)"
+                                                        (click)="addClient(firstName, lastName, email, password, logo, num_tel, adresse)"
                                                         type="submit">Enregistrer</button>
                                                 </div>
 

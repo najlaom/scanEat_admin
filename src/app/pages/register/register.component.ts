@@ -38,13 +38,14 @@ export class RegisterComponent implements OnInit {
       console.log(data)
       this.admin = data
      
-      localStorage.setItem("email", this.admin.admin.email)
-      localStorage.setItem("firstName", this.admin.admin.firstName)
-      localStorage.setItem("lastName", this.admin.admin.lastName)
-      localStorage.setItem("username", this.admin.admin.username)
-      localStorage.setItem("role", this.admin.admin.role)
-      localStorage.setItem("_id", this.admin.admin._id)
-      this._router.navigate(['./users']);
+      localStorage.setItem("email", this.admin.user.email)
+      localStorage.setItem("firstName", this.admin.user.firstName)
+      localStorage.setItem("lastName", this.admin.user.lastName)
+      localStorage.setItem("username", this.admin.user.username)
+      localStorage.setItem("role", this.admin.user.date_create_admin)
+      localStorage.setItem("role", this.admin.user.role)
+      localStorage.setItem("_id", this.admin.user._id)
+      this._router.navigate(['./dashboard']);
       
     },
     error => {
